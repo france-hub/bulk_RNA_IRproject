@@ -133,10 +133,10 @@ table(samples$cell_type, samples$organ)
 ##Subset different counts per timepoint and cell type
 
 #Pre
-pre_pb_cd4 <- samples$id[grepl("pbprecd4|hdpb[0-9]cd4", samples$id)]
+pre_pb_cd4 <- samples$id[grepl("pbprecd4|hdpb[0-9]cd4|hdpb[a-z]{2}cd4", samples$id)]
 cd4_pb_pre_count <-  count[, c("geneid", pre_pb_cd4)]
 
-pre_pb_cd8 <- samples$id[grepl("pbprecd8|hdpb[0-9]cd8", samples$id)]
+pre_pb_cd8 <- samples$id[grepl("pbprecd8|hdpb[0-9]cd8|hdpb[a-z]{2}cd8", samples$id)]
 cd8_pb_pre_count <-  count[, c("geneid", pre_pb_cd8)]
 
 pre_bm_cd4 <- samples$id[grepl("bmprecd4|hdbm[0-9]{4}cd4|hd[a-z]{2}bmcd4", samples$id)]
@@ -146,10 +146,10 @@ pre_bm_cd8 <- samples$id[grepl("bmprecd8|hdbm[0-9]{4}cd8|hd[a-z]{2}bmcd8", sampl
 cd8_bm_pre_count <-  count[, c("geneid", pre_bm_cd8)]
 
 #FR
-fr_pb_cd4 <- samples$id[grepl("pbfrcd4|hdpb[0-9]cd4", samples$id)]
+fr_pb_cd4 <- samples$id[grepl("pbfrcd4|hdpb[0-9]cd4|hdpb[a-z]{2}cd4", samples$id)]
 cd4_pb_fr_count <-  count[, c("geneid", fr_pb_cd4)]
 
-fr_pb_cd8 <- samples$id[grepl("pbfrcd8|hdpb[0-9]cd8", samples$id)]
+fr_pb_cd8 <- samples$id[grepl("pbfrcd8|hdpb[0-9]cd8|hdpb[a-z]{2}cd8", samples$id)]
 cd8_pb_fr_count <-  count[, c("geneid", fr_pb_cd8)]
 
 fr_bm_cd4 <- samples$id[grepl("bmfrcd4|hdbm[0-9]{4}cd4|hd[a-z]{2}bmcd4", samples$id)]
@@ -172,3 +172,4 @@ cd4_bm_fr_sample <- samples[samples$id %in% fr_bm_cd4,]
 cd8_bm_fr_sample <- samples[samples$id %in% fr_bm_cd8,]
 
 save(list = ls(), file = "bulk_seq_tidy.rds")
+

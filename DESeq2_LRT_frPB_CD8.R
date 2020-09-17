@@ -1,6 +1,6 @@
 rm(list = ls())
 
-supfrssPackageStartupMessages({
+suppressPackageStartupMessages({
   library(DESeq2)
   library(ggplot2)
   library(dplyr)
@@ -45,5 +45,7 @@ plot_genes(x, "response", scale="row", fontsize_row= 6)
 res_LRT %>% 
   arrange(padj) %>% 
   DT::datatable()
+
+
 
 save(list = ls(), file = "bulk_seq_LRT_frPbcd8.rds")
