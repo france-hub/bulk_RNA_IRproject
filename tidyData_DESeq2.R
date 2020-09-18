@@ -99,6 +99,9 @@ samples$response <- gsub("no", "NR", samples$response)
 samples$response <- as.factor(samples$response)
 levels(samples$response)
 
+samples$case_control <- as.factor(samples$case_control)
+levels(samples$case_control) <- c("control", "case")
+
 #Read counts
 count <- read_tsv(paste(counts_metadata, "counts.txt", sep="/"))
 

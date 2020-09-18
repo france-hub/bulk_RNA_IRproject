@@ -38,3 +38,4 @@ x <- top_counts(bm_cd4_fr_res[[1]], rld_bm_cd4_fr, sort_fc = TRUE, padj=0.05)
 plot_genes(x, "case_control", scale="row", fontsize_row= 6)
 
 save(list = ls(), file = "bulk_seq_caseVSctrl_frbmcd4.rds")
+

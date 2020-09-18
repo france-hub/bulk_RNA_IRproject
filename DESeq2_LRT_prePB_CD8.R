@@ -42,6 +42,11 @@ res_Prepb_cd8_LRT <- annotate_results(res_Prepb_cd8_LRT, biomart, Columns)
 x <- top_counts(res_Prepb_cd8_LRT, rld_Prepb_cd8_LRT, sort_fc = FALSE, filter = FALSE, padj=0.05)
 plot_genes(x, "response", scale="row", fontsize_row= 6)
 
+#Volcano
+res_volc <- results_all(pb_cd8_pre_dds, human100, alpha = 0.05, vs = "all", simplify = FALSE)
+plot_volcano(res_volc[[3]], ggplot=TRUE, pvalue= -log10( sort(res_volc[[3]]$padj)[50])) + ggtitle("pb_cd8_pre")
+
+
 res_table <- res_Prepb_cd8_LRT %>% 
   arrange(padj) %>% 
   DT::datatable()

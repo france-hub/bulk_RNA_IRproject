@@ -1,6 +1,6 @@
 rm(list = ls())
 
-supfrssPackageStartupMessages({
+suppressPackageStartupMessages({
   library(DESeq2)
   library(ggplot2)
   library(dplyr)
