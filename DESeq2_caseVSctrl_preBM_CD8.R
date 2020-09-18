@@ -15,7 +15,7 @@ suppressPackageStartupMessages({
 load("bulk_seq_tidy.rds")
 
 #DDS object
-bm_cd8_pre_dds <- deseq_preom_tibble(cd8_bm_pre_count, cd8_bm_pre_sample, design = ~ case_control)
+bm_cd8_pre_dds <- deseq_from_tibble(cd8_bm_pre_count, cd8_bm_pre_sample, design = ~ case_control)
 
 #Stailizing variance
 rld_bm_cd8_pre <- rlog(bm_cd8_pre_dds)
@@ -38,3 +38,5 @@ x <- top_counts(bm_cd8_pre_res[[1]], rld_bm_cd8_pre, sort_fc = TRUE, padj=0.05)
 plot_genes(x, "case_control", scale="row", fontsize_row= 6)
 
 save(list = ls(), file = "bulk_seq_caseVSctrl_prebmCD8.rds")
+
+
