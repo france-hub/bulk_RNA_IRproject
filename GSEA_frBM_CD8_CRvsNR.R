@@ -1,7 +1,7 @@
 rm(list = ls())
 
 #Load packages 
-supfrssPackageStartupMessages({
+suppressPackageStartupMessages({
   library(DOSE)
   library(clusterProfiler)
   library(tidyverse)
@@ -17,6 +17,9 @@ supfrssPackageStartupMessages({
   library(org.Hs.eg.db)
   library(ggupset)
   library(gmt)
+  library(hciR)
+  library(DESeq2)
+  library(hciRdata)
 })
 
 # Set PrimaryDirectory where this script is located
@@ -35,9 +38,8 @@ bm_cd8_fr_dds <- deseq_from_tibble(cd8_bm_fr_count, cd8_bm_fr_sample, design = ~
 rld_bm_cd8_fr <- rlog(bm_cd8_fr_dds)
 bm_cd8_fr_res <- results_all(bm_cd8_fr_dds, human100, alpha = 0.05, vs = "all", simplify = FALSE)
 
-
 #create ranks
-data <- bm_cd8_fr_res[[3]]
+data <- bm_cd8_fr_res[[2]]
 rnk <-   data %>%
   dplyr::filter(padj < 0.05) %>%
   dplyr::select(gene_name, stat) %>%

@@ -13,6 +13,13 @@ suppressPackageStartupMessages({
   library(htmlwidgets)
 })
 
+# Set PrimaryDirectory where this script is located
+dirname(rstudioapi::getActiveDocumentContext()$path)  
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+getwd()
+PrimaryDirectory <- getwd()
+PrimaryDirectory
+
 load("bulk_seq_tidy.rds")
 
 #DDS object

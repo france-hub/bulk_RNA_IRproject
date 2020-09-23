@@ -1,6 +1,7 @@
 rm(list = ls())
 
 suppressPackageStartupMessages({
+  library(rstudioapi)
   library(DESeq2)
   library(ggplot2)
   library(dplyr)
@@ -12,14 +13,23 @@ suppressPackageStartupMessages({
   library(htmlwidgets)
 })
 
+# Set PrimaryDirectory where this script is located
+dirname(rstudioapi::getActiveDocumentContext()$path)  
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+getwd()
+PrimaryDirectory <- getwd()
+PrimaryDirectory
+
 load("bulk_seq_tidy.rds")
 
 #DDS object
 pb_cd8_pre_dds <- deseq_from_tibble(cd8_pb_pre_count, cd8_pb_pre_sample, design = ~ case_control)
 
+View(pb_cd8_pre_dds)
+
 #Stailizing variance
 rld_pb_cd8_pre <- rlog(pb_cd8_pre_dds)
-
+View(rld_pb_cd8_pre)
 #PCA
 plot_pca(rld_pb_cd8_pre, "case_control", tooltip="id", width=700)
 plot_pca(rld_pb_cd8_pre, "case_control", tooltip="id", width=700, pc = c(3,4))
